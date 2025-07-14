@@ -20,18 +20,18 @@
 
 ## 3. CSS选择器及其优先级
 
-| **选择器**     | **格式**      | **优先级权重** |
-| -------------- | ------------- | -------------- |
-| id选择器       | #id           | 100            |
-| 类选择器       | .classname    | 10             |
-| 属性选择器     | a[ref=“eee”]  | 10             |
-| 伪类选择器     | li:last-child | 10             |
-| 标签选择器     | div           | 1              |
-| 伪元素选择器   | li:after      | 1              |
-| 相邻兄弟选择器 | h1+p          | 0              |
-| 子选择器       | ul>li         | 0              |
-| 后代选择器     | li a          | 0              |
-| 通配符选择器   | *             | 0              |
+| **选择器** | **格式** | **优先级权重** |
+| ---------------- | -------------- | -------------------- |
+| id选择器         | #id            | 100                  |
+| 类选择器         | .classname     | 10                   |
+| 属性选择器       | a[ref=“eee”] | 10                   |
+| 伪类选择器       | li:last-child  | 10                   |
+| 标签选择器       | div            | 1                    |
+| 伪元素选择器     | li:after       | 1                    |
+| 相邻兄弟选择器   | h1+p           | 0                    |
+| 子选择器         | ul>li          | 0                    |
+| 后代选择器       | li a           | 0                    |
+| 通配符选择器     | *              | 0                    |
 
 **对于选择器的优先级：**
 
@@ -48,20 +48,18 @@
 - **通用选择器（\*）、子选择器（>）和相邻同胞选择器（+）并不在这四个等级中，所以它们的权值都为 0 ；**
 - **样式表的来源不同时，优先级顺序为：内联样式 > 内部样式 > 外部样式 > 浏览器用户自定义样式 > 浏览器默认样式。**
 
-
-
 ## 4.display的属性值及其作用
 
-| **属性值**   |                          **作用**                          |
-| ------------ | :--------------------------------------------------------: |
-| none         |             元素不显示，并且会从文档流中移除。             |
-| block        |    块类型。默认宽度为父元素宽度，可设置宽高，换行显示。    |
-| inline       | 行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。 |
-| inline-block |        默认宽度为内容宽度，可以设置宽高，同行显示。        |
-| list-item    |         像块类型元素一样显示，并添加样式列表标记。         |
-| table        |                此元素会作为块级表格来显示。                |
-| inherit      |           规定应该从父元素继承display属性的值。            |
-| flex         |                          flex布局                          |
+| **属性值** |                       **作用**                       |
+| ---------------- | :--------------------------------------------------------: |
+| none             |             元素不显示，并且会从文档流中移除。             |
+| block            |    块类型。默认宽度为父元素宽度，可设置宽高，换行显示。    |
+| inline           | 行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。 |
+| inline-block     |        默认宽度为内容宽度，可以设置宽高，同行显示。        |
+| list-item        |         像块类型元素一样显示，并添加样式列表标记。         |
+| table            |                此元素会作为块级表格来显示。                |
+| inherit          |           规定应该从父元素继承display属性的值。           |
+| flex             |                          flex布局                          |
 
 ## 5.display的block、inline和inline-block的区别
 
@@ -159,9 +157,9 @@ p:first-child {color: red}
 - **box-sizeing: content-box表示标准盒模型（默认值）**
 - **box-sizeing: border-box表示IE盒模型（怪异盒模型）**
 
-## 11. 对 CSSSprites 的理解
+## 11. 对 CSS Sprites 的理解
 
-**CSSSprites（精灵图），将一个页面涉及到的所有图片都包含到一张大图中去，然后利用CSS的 background-image，background-repeat，background-position属性的组合进行背景定位。**
+**CSS Sprites（精灵图），将一个页面涉及到的所有图片都包含到一张大图中去，然后利用CSS的 background-image，background-repeat，background-position属性的组合进行背景定位。**
 
 **优点：**
 
@@ -171,7 +169,7 @@ p:first-child {color: red}
 **缺点：**
 
 - **在图片合并时，要把多张图片有序的、合理的合并成一张图片，还要留好足够的空间，防止板块内出现不必要的背景。在宽屏及高分辨率下的自适应页面，如果背景不够宽，很容易出现背景断裂；**
-- **CSSSprites在开发的时候相对来说有点麻烦，需要借助** **photoshop或其他工具来对每个背景单元测量其准确的位置。**
+- **CSS Sprites在开发的时候相对来说有点麻烦，需要借助** **photoshop或其他工具来对每个背景单元测量其准确的位置。**
 - **维护方面：CSS Sprites在维护的时候比较麻烦，页面背景有少许改动时，就要改这张合并的图片，无需改的地方尽量不要动，这样避免改动更多的** **CSS，如果在原来的地方放不下，又只能（最好）往下加图片，这样图片的字节就增加了，还要改动** **CSS。**
 
 ## 12. CSS预处理器/后处理器是什么？为什么要使用它们？
@@ -221,6 +219,8 @@ display:-webkit-box;         // 作为弹性伸缩盒子模型显示。
 
 ## 15. 如何判断元素是否到达可视区域
 
+
+
 **以图片显示为例：**
 
 - **window.innerHeight** **是浏览器可视区的高度；**
@@ -237,8 +237,6 @@ display:-webkit-box;         // 作为弹性伸缩盒子模型显示。
 - **父元素position为relative时，子元素的z-index失效。解决：父元素position改为absolute或static；**
 - **元素没有设置position属性为非static属性。解决：设置该元素的position属性为relative，absolute或是fixed中的一种；**
 - **元素在设置z-index的同时还设置了float浮动。解决：float去除，改为display：inline-block；**
-
-
 
 ## 17. 两栏布局的实现
 
@@ -786,13 +784,13 @@ display:-webkit-box;         // 作为弹性伸缩盒子模型显示。
 
 **sition有以下属性值：**
 
-| **属性值** |                           **概述**                           |
-| ---------- | :----------------------------------------------------------: |
-| absolute   | 生成绝对定位的元素，相对于static定位以外的一个父元素进行定位。元素的位置通过left、top、right、bottom属性进行规定。 |
-| relative   | 生成相对定位的元素，相对于其原来的位置进行定位。元素的位置通过left、top、right、bottom属性进行规定。 |
-| fixed      | 生成绝对定位的元素，指定元素相对于屏幕视⼝（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变，⽐如回到顶部的按钮⼀般都是⽤此定位⽅式。 |
-| static     | 默认值，没有定位，元素出现在正常的文档流中，会忽略 top, bottom, left, right 或者 z-index 声明，块级元素从上往下纵向排布，⾏级元素从左向右排列。 |
-| inherit    |               规定从父元素继承position属性的值               |
+| **属性值** |                                                                    **概述**                                                                    |
+| ---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
+| absolute         |                  生成绝对定位的元素，相对于static定位以外的一个父元素进行定位。元素的位置通过left、top、right、bottom属性进行规定。                  |
+| relative         |                         生成相对定位的元素，相对于其原来的位置进行定位。元素的位置通过left、top、right、bottom属性进行规定。                         |
+| fixed            | 生成绝对定位的元素，指定元素相对于屏幕视⼝（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变，⽐如回到顶部的按钮⼀般都是⽤此定位⽅式。 |
+| static           |   默认值，没有定位，元素出现在正常的文档流中，会忽略 top, bottom, left, right 或者 z-index 声明，块级元素从上往下纵向排布，⾏级元素从左向右排列。   |
+| inherit          |                                                           规定从父元素继承position属性的值                                                           |
 
 **前面三者的定位方式如下：**
 
@@ -1025,39 +1023,25 @@ metaEl.setAttribute('content', `width=device-width,user-scalable=no,initial-scal
 一些常见的可继承属性包括：
 
 - 字体相关属性（font、font-size、font-weight等）
-
 - 文本相关属性（color、text-align、line-height等）
-
 - 元素可见性相关属性（visibility）
-
 - 元素间距属性（margin、padding）
 
   剩下的都可理解为是不可继承属性，它们的特性：
-
 - 不可继承属性不会被子元素继承，子元素不会自动继承父元素上设置的样式属性。
-
 - 子元素需要通过自身的样式来显式地设置不可继承属性。
-
 - 子元素的样式会独立于父元素的样式，不会受到父元素设置的影响。
 
-   一些常见的可继承属性包括：
-
+  一些常见的可继承属性包括：
 - 字体相关属性（font、font-size、font-weight等）
-
 - 文本相关属性（color、text-align、line-height等）
-
 - 元素可见性相关属性（visibility）
-
 - 元素间距属性（margin、padding）
 
   一些常见的不可继承属性包括：
-
 - 盒模型属性（width、height、border、margin、padding等）
-
 - 定位属性（position、top、right、bottom、left等）
-
 - 背景相关属性（background、background-color等）
-
 - 清除浮动的属性（clear）
 
 ## 33.line-height: 100% 和 line-height: 1 有什么不一样？
@@ -1152,7 +1136,6 @@ flex: shrink 的默认值是 1，flex-grow 的默认值是 0。
 
    1. 这个属性有点类似 Javascript 的事件冒泡，从可获焦元素开始一直冒泡到根元素 html，都可以接收触发 :focus-within 事件，类似下面这个简单的例子这样：
    2. 子元素的 :focus 状态触发，可以同时触发所有父元素的 :focus-within 伪类，以此变相实现父选择器的功能。当然，这种方法限制还是很大的。
-
 2. 伪类选择器 :has()
 
    1. :has 伪类接受一个选择器组作为参数，该参数相对于该元素的 [:scope](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:scope) 至少匹配一个元素。
@@ -1162,12 +1145,13 @@ flex: shrink 的默认值是 1，flex-grow 的默认值是 0。
    > 在之前，是没有父选择器的！这个问题的答案和“为何CSS相邻兄弟选择器只支持后面的元素，而不支持前面的兄弟元素？”是一样的。
    > 浏览器解析HTML文档，是从前往后，由外及里的。所以，我们时常会看到页面先出现头部然后主体内容再出现的加载情况。
    > 但是，如果CSS支持了父选择器，那就必须要页面所有子元素加载完毕才能渲染HTML文档，因为所谓“父选择器”，就是后代元素影响祖先元素，如果后代元素还没加载处理，如何影响祖先元素的样式？于是，网页渲染呈现速度就会大大减慢，浏览器会出现长时间的白板。加载多少 HTML 就可以渲染多少 HTML，在网速不是很快的时候，就显得尤为的必要。如果支持父选择器，则整个文档不能有阻塞，页面的可访问性则要大大降低。
+   >
 
 ## 38.说一下宫格布局？
 
 > div{
->   display: grid;/*指定一个容器采用网格布局。*/
->   display: inline-grid;/*该元素内部采用网格布局*/
+> display: grid;/*指定一个容器采用网格布局。*/
+> display: inline-grid;/*该元素内部采用网格布局*/
 > }
 
 默认情况下，容器元素都是块级元素，但也可以设成行内元素。
@@ -1180,23 +1164,23 @@ flex: shrink 的默认值是 1，flex-grow 的默认值是 0。
 
 1.设置列columns 行的高度rows
 
-> ​     grid-template-columns: 100px 100px 100px;
+>     grid-template-columns: 100px 100px 100px;
 >
-> ​      grid-template-rows: 100px 100px 100px;
+>     grid-template-rows: 100px 100px 100px;
 
 2.repeat repeat()函数  1:重复值  2：重复模式
 
-​    参数1：重复次数 参数2：像素值
+    参数1：重复次数 参数2：像素值
 
-> ​    grid-template-columns: repeat(2,100px 200px);
+>     grid-template-columns: repeat(2,100px 200px);
 >
-> ​      grid-template-rows: repeat(2,100px 200px);
+>     grid-template-rows: repeat(2,100px 200px);
 
 3.fr 关键字 通过关键字划分比例
 
-> ​    grid-template-rows: repeat(2,1fr 2fr);
+>     grid-template-rows: repeat(2,1fr 2fr);
 >
-> ​      grid-template-columns: repeat(2,1fr 2fr);
+>     grid-template-columns: repeat(2,1fr 2fr);
 
 4.auto-fit 自动填充每一行 或 每一列
 
@@ -1214,25 +1198,25 @@ flex: shrink 的默认值是 1，flex-grow 的默认值是 0。
 
 7. grid-template-columns 网格线 [c1] ~[c4] 中括号内是网格线的名字
 
->  grid-template-columns: [c1] 100px [c2] auto [c3] 100px [c4];
+> grid-template-columns: [c1] 100px [c2] auto [c3] 100px [c4];
 
 8. gap 间隙
 
-> ​      /* 列间距 */
+>     /* 列间距 */
 >
-> ​      /* column-gap: 10px; */
+>     /* column-gap: 10px; */
 >
-> ​       /*行间距  */
+>     /*行间距  */
 >
-> ​      /* row-gap: 10px; */
+>     /* row-gap: 10px; */
 >
-> ​      /*合并写法： gap:行间距 列间距 */
+>     /*合并写法： gap:行间距 列间距 */
 >
-> ​      gap:10px 20px;
+>     gap:10px 20px;
 
 9.area 区域：代表单个或者多个单元格，单引号内分别是单元格的名字（3x3的网格，九个名字）
 
-​      别名一样相当于合并啊，但是要和grid-area一起用，将元素放进去
+    别名一样相当于合并啊，但是要和grid-area一起用，将元素放进去
 
 > grid-template-areas: 'a b c ' 'h j k' 'd e f ';
 
@@ -1246,21 +1230,21 @@ flex: shrink 的默认值是 1，flex-grow 的默认值是 0。
 
 12.缩小内容宽高来使得内容居中(单元格的内容)（宽度和高度只有内容大小）
 
-​      place-items（合并写法）
+    place-items（合并写法）
 
-> ​    justify-items: center;
+>     justify-items: center;
 >
-> ​      align-items: center;
+>     align-items: center;
 >
-> ​      /* place-items: center; */
+>     /* place-items: center; */
 
  13.设置内容位置（居中）（容器内容 包括间隙）
 
-> ​      justify-content: center;
+>     justify-content: center;
 >
-> ​      align-content: center;
+>     align-content: center;
 >
-> ​      /* place-content: center; */
+>     /* place-content: center; */
 
 **二、项目属性（写在项目样式中）**
 
@@ -1268,11 +1252,11 @@ flex: shrink 的默认值是 1，flex-grow 的默认值是 0。
 
 举例：网格线 列 从第一根开始 第三根结束
 
-> ​     grid-column-start: 1;
+>     grid-column-start: 1;
 >
-> ​      grid-column-end: 3;
+>     grid-column-end: 3;
 >
-> ​      /* grid-column: 1 / 3; */ 合并写法
+>     /* grid-column: 1 / 3; */ 合并写法
 >
 > /* 合并：grid-area：行的开始/列的开始/行的结束/列的结束 */
 
@@ -1282,6 +1266,6 @@ flex: shrink 的默认值是 1，flex-grow 的默认值是 0。
 
 3.该项目自己的对齐方式：水平居中 垂直居中
 
-> ​      justify-self: center;
+>     justify-self: center;
 >
-> ​      align-self: center;
+>     align-self: center;

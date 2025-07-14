@@ -1,8 +1,4 @@
-
-
 ![1.image](https://gitee.com/nest-of-old-time/picture/raw/master/typora/202401121644982.png)
-
-
 
 ### 一、组件基础
 
@@ -12,7 +8,7 @@
 <div onClick={this.handleClick.bind(this)}>点我</div>
 ```
 
-React并不是将click事件绑定到了div的真实DOM上，而是在document处监听了所有的事件，当事件发生并且[冒泡](https://so.csdn.net/so/search?q=冒泡&spm=1001.2101.3001.7020)到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组件挂在销毁时统一订阅和移除事件。
+React并不是将click事件绑定到了div的真实DOM上，而是在document处监听了所有的事件，当事件发生并且[冒泡](https://so.csdn.net/so/search?q=冒泡&spm=1001.2101.3001.7020)到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组件挂载销毁时统一订阅和移除事件。
 
 除此之外，冒泡到document上的事件也不是原生的浏览器事件，而是由react自己实现的合成事件（SyntheticEvent）。因此如果不想要是[事件冒泡](https://so.csdn.net/so/search?q=事件冒泡&spm=1001.2101.3001.7020)的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。 ![2.image](https://gitee.com/nest-of-old-time/picture/raw/master/typora/202401121642462.png) JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事件代理的方式，将所有的事件都统一绑定在了 `document` 上。这样的方式不仅减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。
 
@@ -29,7 +25,7 @@ React并不是将click事件绑定到了div的真实DOM上，而是在document�
 
 - 对于事件名称命名方式，原生事件为全小写，react 事件采用小驼峰；
 - 对于事件函数处理语法，原生事件为字符串，react 事件为函数；
-- react 事件不能采用 return false 的方式来阻止浏览器的默认行为，而必须要地明确地调用`preventDefault()`来阻止默认行为。
+- react 事件不能采用 return false 的方式来阻止浏览器的默认行为，而必须要地明确地调用 `preventDefault()`来阻止默认行为。
 
 合成事件是 react 模拟原生 DOM 事件所有能力的一个事件对象，其优点如下：
 
@@ -193,11 +189,11 @@ PureComponent表示一个纯组件，可以用来优化React程序，减少rende
 
 #### 7. Component, Element, Instance 之间有什么区别和联系？
 
-- **元素：** 一个元素`element`是一个普通对象(plain object)，描述了对于一个DOM节点或者其他组件`component`，你想让它在屏幕上呈现成什么样子。元素`element`可以在它的属性`props`中包含其他元素(译注:用于形成元素树)。创建一个React元素`element`成本很低。元素`element`创建之后是不可变的。
-- **组件：** 一个组件`component`可以通过多种方式声明。可以是带有一个`render()`方法的类，简单点也可以定义为一个函数。这两种情况下，它都把属性`props`作为输入，把返回的一棵元素树作为输出。
-- **实例：** 一个实例`instance`是你在所写的组件类`component class`中使用关键字`this`所指向的东西(译注:组件实例)。它用来存储本地状态和响应生命周期事件很有用。
+- **元素：** 一个元素 `element`是一个普通对象(plain object)，描述了对于一个DOM节点或者其他组件 `component`，你想让它在屏幕上呈现成什么样子。元素 `element`可以在它的属性 `props`中包含其他元素(译注:用于形成元素树)。创建一个React元素 `element`成本很低。元素 `element`创建之后是不可变的。
+- **组件：** 一个组件 `component`可以通过多种方式声明。可以是带有一个 `render()`方法的类，简单点也可以定义为一个函数。这两种情况下，它都把属性 `props`作为输入，把返回的一棵元素树作为输出。
+- **实例：** 一个实例 `instance`是你在所写的组件类 `component class`中使用关键字 `this`所指向的东西(译注:组件实例)。它用来存储本地状态和响应生命周期事件很有用。
 
-函数式组件(`Functional component`)根本没有实例`instance`。类组件(`Class component`)有实例`instance`，但是永远也不需要直接创建一个组件的实例，因为React帮我们做了这些。
+函数式组件(`Functional component`)根本没有实例 `instance`。类组件(`Class component`)有实例 `instance`，但是永远也不需要直接创建一个组件的实例，因为React帮我们做了这些。
 
 #### 8. React.createClass和extends Component的区别有哪些？
 
@@ -396,7 +392,7 @@ export default withFetching(fetching('some-other-type'))(MovieList);
 
 #### 10. 对componentWillReceiveProps 的理解
 
-该方法当`props`发生变化时执行，初始化`render`时不执行，在这个回调函数里面，你可以根据属性的变化，通过调用`this.setState()`来更新你的组件状态，旧的属性还是可以通过`this.props`来获取,这里调用更新状态是安全的，并不会触发额外的`render`调用。
+该方法当 `props`发生变化时执行，初始化 `render`时不执行，在这个回调函数里面，你可以根据属性的变化，通过调用 `this.setState()`来更新你的组件状态，旧的属性还是可以通过 `this.props`来获取,这里调用更新状态是安全的，并不会触发额外的 `render`调用。
 
 **使用好处：** 在这个生命周期中，可以在子组件的render函数执行前获取新的props，从而更新子组件自己的state。 可以将数据请求放在这里进行执行，需要传的参数则从componentWillReceiveProps(nextProps)中获取。而不必将所有的请求都放在父组件中。于是该请求只会在该组件渲染时才会发出，从而减轻请求负担。
 
@@ -450,17 +446,17 @@ React 的处理 render 的基本思维模式是每次一有变动就会去重新
 
 #### 12. React如何判断什么时候重新渲染组件？
 
-组件状态的改变可以因为`props`的改变，或者直接通过`setState`方法改变。组件获得新的状态，然后React决定是否应该重新渲染组件。只要组件的state发生变化，React就会对组件进行重新渲染。这是因为React中的`shouldComponentUpdate`方法默认返回`true`，这就是导致每次更新都重新渲染的原因。
+组件状态的改变可以因为 `props`的改变，或者直接通过 `setState`方法改变。组件获得新的状态，然后React决定是否应该重新渲染组件。只要组件的state发生变化，React就会对组件进行重新渲染。这是因为React中的 `shouldComponentUpdate`方法默认返回 `true`，这就是导致每次更新都重新渲染的原因。
 
-当React将要渲染组件时会执行`shouldComponentUpdate`方法来看它是否返回`true`（组件应该更新，也就是重新渲染）。所以需要重写`shouldComponentUpdate`方法让它根据情况返回`true`或者`false`来告诉React什么时候重新渲染什么时候跳过重新渲染。
+当React将要渲染组件时会执行 `shouldComponentUpdate`方法来看它是否返回 `true`（组件应该更新，也就是重新渲染）。所以需要重写 `shouldComponentUpdate`方法让它根据情况返回 `true`或者 `false`来告诉React什么时候重新渲染什么时候跳过重新渲染。
 
 #### 13. React声明组件有哪几种方法，有什么不同？
 
 React 声明组件的三种方式：
 
-- 函数式定义的`无状态组件`
-- ES5原生方式`React.createClass`定义的组件
-- ES6形式的`extends React.Component`定义的组件
+- 函数式定义的 `无状态组件`
+- ES5原生方式 `React.createClass`定义的组件
+- ES6形式的 `extends React.Component`定义的组件
 
 **（1）无状态函数式组件** 它是为了创建纯展示组件，这种组件只负责根据传入的props来展示，不涉及到state状态的操作 组件不会被实例化，整体渲染性能得到提升，不能访问this对象，不能访问生命周期的方法
 
@@ -616,7 +612,7 @@ render() {
 }
 ```
 
-然而，有些元素需要被挂载在更高层级的位置。最典型的应用场景：当父组件具有`overflow: hidden`或者`z-index`的样式设置时，组件有可能被其他元素遮挡，这时就可以考虑要不要使用Portal使组件的挂载脱离父组件。例如：对话框，模态窗。
+然而，有些元素需要被挂载在更高层级的位置。最典型的应用场景：当父组件具有 `overflow: hidden`或者 `z-index`的样式设置时，组件有可能被其他元素遮挡，这时就可以考虑要不要使用Portal使组件的挂载脱离父组件。例如：对话框，模态窗。
 
 ```react
 import DemoComponent from './DemoComponent';
@@ -675,7 +671,7 @@ JS的代码块在执行期间，会创建一个相应的作用域链，这个作
 
 #### 23. React中什么是受控组件和非控组件？
 
-**（1）受控组件** 在使用表单来收集用户输入时，例如`<input><select><textearea>`等元素都要绑定一个change事件，当表单的状态发生变化，就会触发onChange事件，更新组件的state。这种组件在React中被称为**受控组件**，在受控组件中，组件渲染出的状态与它的value或checked属性相对应，react通过这种方式消除了组件的局部状态，使整个状态可控。react官方推荐使用受控表单组件。
+**（1）受控组件** 在使用表单来收集用户输入时，例如 `<input><select><textearea>`等元素都要绑定一个change事件，当表单的状态发生变化，就会触发onChange事件，更新组件的state。这种组件在React中被称为**受控组件**，在受控组件中，组件渲染出的状态与它的value或checked属性相对应，react通过这种方式消除了组件的局部状态，使整个状态可控。react官方推荐使用受控表单组件。
 
 受控组件更新state的流程：
 
@@ -789,16 +785,14 @@ function CustomTextInput(props) {
 **注意：**
 
 - 不应该过度的使用 Refs
-
 - ```react
   ref
   ```
 
-   的返回值取决于节点的类型：
+  的返回值取决于节点的类型：
 
   - 当 `ref` 属性被用于一个普通的 HTML 元素时，`React.createRef()` 将接收底层 DOM 元素作为他的 `current` 属性以创建 `ref`。
   - 当 `ref` 属性被用于一个自定义的类组件时，`ref` 对象将接收该组件已挂载的实例作为他的 `current`。
-
 - 当在父组件中需要访问子组件中的 `ref` 时可使用传递 Refs 或回调 Refs。
 
 #### 26. React组件的构造函数有什么作用？它是必须的吗？
@@ -873,7 +867,7 @@ React.forwardRef 会创建一个React组件，这个组件能够将其接受的 
 
 具体的执行过程如下（源码级解析)：
 
-- 首先调用了`setState` 入口函数，入口函数在这里就是充当一个分发器的角色，根据入参的不同，将其分发到不同的功能函数中去；
+- 首先调用了 `setState` 入口函数，入口函数在这里就是充当一个分发器的角色，根据入参的不同，将其分发到不同的功能函数中去；
 
 ```kotlin
 ReactComponent.prototype.setState = function (partialState, callback) {
@@ -898,7 +892,7 @@ enqueueSetState: function (publicInstance, partialState) {
 }
 ```
 
-- 在 `enqueueUpdate` 方法中引出了一个关键的对象——`batchingStrategy`，该对象所具备的`isBatchingUpdates` 属性直接决定了当下是要走更新流程，还是应该排队等待；如果轮到执行，就调用 `batchedUpdates` 方法来直接发起更新流程。由此可以推测，`batchingStrategy` 或许正是 React 内部专门用于管控批量更新的对象。
+- 在 `enqueueUpdate` 方法中引出了一个关键的对象——`batchingStrategy`，该对象所具备的 `isBatchingUpdates` 属性直接决定了当下是要走更新流程，还是应该排队等待；如果轮到执行，就调用 `batchedUpdates` 方法来直接发起更新流程。由此可以推测，`batchingStrategy` 或许正是 React 内部专门用于管控批量更新的对象。
 
 ```react
 function enqueueUpdate(component) {
@@ -940,12 +934,12 @@ setState 并不是单纯同步/异步的，它的表现会因调用场景的不�
 
 一般认为，做异步设计是为了性能优化、减少渲染次数：
 
-- `setState`设计为异步，可以显著的提升性能。如果每次调用 `setState`都进行一次更新，那么意味着`render`函数会被频繁调用，界面重新渲染，这样效率是很低的；最好的办法应该是获取到多个更新，之后进行批量更新；
-- 如果同步更新了`state`，但是还没有执行`render`函数，那么`state`和`props`不能保持同步。`state`和`props`不能保持一致性，会在开发中产生很多的问题；
+- `setState`设计为异步，可以显著的提升性能。如果每次调用 `setState`都进行一次更新，那么意味着 `render`函数会被频繁调用，界面重新渲染，这样效率是很低的；最好的办法应该是获取到多个更新，之后进行批量更新；
+- 如果同步更新了 `state`，但是还没有执行 `render`函数，那么 `state`和 `props`不能保持同步。`state`和 `props`不能保持一致性，会在开发中产生很多的问题；
 
 #### 3. React中的setState批量更新的过程是什么？
 
-调用 `setState` 时，组件的 `state` 并不会立即改变， `setState` 只是把要修改的 `state` 放入一个队列， `React` 会优化真正的执行时机，并出于性能原因，会将 `React` 事件处理程序中的多次`React` 事件处理程序中的多次 `setState` 的状态修改合并成一次状态修改。 最终更新只产生一次组件及其子组件的重新渲染，这对于大型应用程序中的性能提升至关重要。
+调用 `setState` 时，组件的 `state` 并不会立即改变， `setState` 只是把要修改的 `state` 放入一个队列， `React` 会优化真正的执行时机，并出于性能原因，会将 `React` 事件处理程序中的多次 `React` 事件处理程序中的多次 `setState` 的状态修改合并成一次状态修改。 最终更新只产生一次组件及其子组件的重新渲染，这对于大型应用程序中的性能提升至关重要。
 
 ```react
 this.setState({
@@ -1138,7 +1132,7 @@ state的主要作用是用于组件保存、控制以及修改自己的状态，
 
 #### 11. 在React中组件的props改变时更新组件的有哪些方法？
 
-在一个组件传入的props更新时重新渲染该组件常用的方法是在`componentWillReceiveProps`中将新的props更新到组件的state中（这种state被成为派生状态（Derived State）），从而实现重新渲染。React 16.3中还引入了一个新的钩子函数`getDerivedStateFromProps`来专门实现这一需求。
+在一个组件传入的props更新时重新渲染该组件常用的方法是在 `componentWillReceiveProps`中将新的props更新到组件的state中（这种state被成为派生状态（Derived State）），从而实现重新渲染。React 16.3中还引入了一个新的钩子函数 `getDerivedStateFromProps`来专门实现这一需求。
 
 **（1）componentWillReceiveProps（已废弃）**
 
@@ -1148,9 +1142,9 @@ state的主要作用是用于组件保存、控制以及修改自己的状态，
 
 **（2）getDerivedStateFromProps（16.3引入）**
 
-这个生命周期函数是为了替代`componentWillReceiveProps`存在的，所以在需要使用`componentWillReceiveProps`时，就可以考虑使用`getDerivedStateFromProps`来进行替代。
+这个生命周期函数是为了替代 `componentWillReceiveProps`存在的，所以在需要使用 `componentWillReceiveProps`时，就可以考虑使用 `getDerivedStateFromProps`来进行替代。
 
-两者的参数是不相同的，而`getDerivedStateFromProps`是一个静态函数，也就是这个函数不能通过this访问到class的属性，也并不推荐直接访问属性。而是应该通过参数提供的nextProps以及prevState来进行判断，根据新传入的props来映射到state。
+两者的参数是不相同的，而 `getDerivedStateFromProps`是一个静态函数，也就是这个函数不能通过this访问到class的属性，也并不推荐直接访问属性。而是应该通过参数提供的nextProps以及prevState来进行判断，根据新传入的props来映射到state。
 
 需要注意的是，**如果props传入的内容不需要影响到你的state，那么就需要返回一个null**，这个返回值是必须的，所以尽量将其写到函数的末尾：
 
@@ -1484,7 +1478,7 @@ class ScrollingList extends React.Component {
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     // 我们是否在 list 中添加新的 items ？
-    // 捕获滚动​​位置以便我们稍后调整滚动位置。
+    // 捕获滚动位置以便我们稍后调整滚动位置。
     if (prevProps.list.length < this.props.list.length) {
       const list = this.listRef.current;
       return list.scrollHeight - list.scrollTop;
@@ -1514,9 +1508,9 @@ class ScrollingList extends React.Component {
 
 **在getDerivedStateFromProps中进行处理。**
 
-这个生命周期函数是为了替代`componentWillReceiveProps`存在的，所以在需要使用`componentWillReceiveProps`时，就可以考虑使用`getDerivedStateFromProps`来进行替代。
+这个生命周期函数是为了替代 `componentWillReceiveProps`存在的，所以在需要使用 `componentWillReceiveProps`时，就可以考虑使用 `getDerivedStateFromProps`来进行替代。
 
-两者的参数是不相同的，而`getDerivedStateFromProps`是一个静态函数，也就是这个函数不能通过this访问到class的属性，也并不推荐直接访问属性。而是应该通过参数提供的nextProps以及prevState来进行判断，根据新传入的props来映射到state。
+两者的参数是不相同的，而 `getDerivedStateFromProps`是一个静态函数，也就是这个函数不能通过this访问到class的属性，也并不推荐直接访问属性。而是应该通过参数提供的nextProps以及prevState来进行判断，根据新传入的props来映射到state。
 
 需要注意的是，**如果props传入的内容不需要影响到你的state，那么就需要返回一个null**，这个返回值是必须的，所以尽量将其写到函数的末尾：
 
@@ -1584,7 +1578,7 @@ const o2 = JSON.parse(JSON.stringify(this.state.obj))
 1. componentWillUpdate：当组件的 state 或 props 发生改变时，会在渲染之前调用 componentWillUpdate。componentWillUpdate **是 React16 废弃的三个生命周期之一**。过去，我们可能希望能在这个阶段去收集一些必要的信息（比如更新前的 DOM 信息等等），现在我们完全可以在 React16 的 getSnapshotBeforeUpdate 中去做这些事；
 2. componentDidUpdate：componentDidUpdate() 会在UI更新后会被立即调用。它接收 prevProps（上一次的 props 值）作为入参，也就是说在此处我们仍然可以进行 props 值对比（再次说明 componentWillUpdate 确实鸡肋哈）。
 
-****
+---
 
 **props 更新流程：** ![8.image](https://gitee.com/nest-of-old-time/picture/raw/master/typora/202401121642079.png) 相对于 state 更新，props 更新后唯一的区别是增加了对 componentWillReceiveProps 的调用。关于 componentWillReceiveProps，需要知道这些事情：
 
@@ -1728,8 +1722,6 @@ class Parent extends Component {
 }
 ```
 
-####
-
 #### 3. 非嵌套关系组件的通信方式？
 
 即没有任何包含关系的组件，包括兄弟组件以及不在同一个父级中的非兄弟组件。
@@ -1767,7 +1759,6 @@ class Parent extends Component {
   事件，感知 hash 的变化
 
   - 改变 hash 可以直接通过 location.hash=xxx
-
 - 基于 H5 history 路由：
 
   - 改变 url 可以通过 history.pushState 和 resplaceState 等，会将URL压入堆栈，同时能够应用 `history.go()` 等 API
@@ -1780,7 +1771,7 @@ class Parent extends Component {
 
 #### 2. 如何配置 React-Router 实现路由切换
 
-**（1）使用`<Route>` 组件**
+**（1）使用 `<Route>` 组件**
 
 路由匹配是通过比较 `<Route>` 的 path 属性和当前地址的 pathname 来实现的。当一个 `<Route>` 匹配成功时，它将渲染其内容，当它不匹配时就会渲染 null。没有路径的 `<Route>` 将始终被匹配。
 
@@ -1807,7 +1798,7 @@ class Parent extends Component {
 
 **（3）使用 `<Link>、 <NavLink>、<Redirect>` 组件**
 
-`<Link>` 组件来在你的应用程序中创建链接。无论你在何处渲染一个`<Link>` ，都会在应用程序的 HTML 中渲染锚（`<a>`）。
+`<Link>` 组件来在你的应用程序中创建链接。无论你在何处渲染一个 `<Link>` ，都会在应用程序的 HTML 中渲染锚（`<a>`）。
 
 ```react
 <Link to="/">Home</Link>
@@ -1824,11 +1815,11 @@ class Parent extends Component {
 // <a href='/react' className='hurray'>React</a>
 ```
 
-当我们想强制导航时，可以渲染一个`<Redirect>`，当一个`<Redirect>`渲染时，它将使用它的to属性进行定向。
+当我们想强制导航时，可以渲染一个 `<Redirect>`，当一个 `<Redirect>`渲染时，它将使用它的to属性进行定向。
 
 #### 3. React-Router怎么设置重定向？
 
-使用`<Redirect>`组件实现路由的重定向：
+使用 `<Redirect>`组件实现路由的重定向：
 
 ```react
 <Switch>
@@ -1846,13 +1837,13 @@ class Parent extends Component {
 
 #### 4. react-router 里的 Link 标签和 a 标签的区别
 
-从最终渲染的 DOM 来看，这两者都是链接，都是 标签，区别是∶ `<Link>`是react-router 里实现路由跳转的链接，一般配合`<Route>` 使用，react-router接管了其默认的链接跳转行为，区别于传统的页面跳转，`<Link>` 的“跳转”行为只会触发相匹配的`<Route>`对应的页面内容更新，而不会刷新整个页面。
+从最终渲染的 DOM 来看，这两者都是链接，都是 标签，区别是∶ `<Link>`是react-router 里实现路由跳转的链接，一般配合 `<Route>` 使用，react-router接管了其默认的链接跳转行为，区别于传统的页面跳转，`<Link>` 的“跳转”行为只会触发相匹配的 `<Route>`对应的页面内容更新，而不会刷新整个页面。
 
 `<Link>`做了3件事情:
 
 - 有onclick那就执行onclick
 - click的时候阻止a标签默认事件
-- 根据跳转href(即是to)，用history (web前端路由两种方式之一，history & hash)跳转，此时只是链接变了，并没有刷新页面而`<a>`标签就是普通的超链接了，用于从当前页面跳转到href指向的另一 个页面(非锚点情况)。
+- 根据跳转href(即是to)，用history (web前端路由两种方式之一，history & hash)跳转，此时只是链接变了，并没有刷新页面而 `<a>`标签就是普通的超链接了，用于从当前页面跳转到href指向的另一 个页面(非锚点情况)。
 
 a标签默认事件禁掉之后做了什么才实现了跳转?
 
@@ -1871,15 +1862,15 @@ let domArr = document.getElementsByTagName('a')
 
 - **get传值**
 
-路由配置还是普通的配置，如：`'admin'`，传参方式如：`'admin?id='1111''`。通过`this.props.location.search`获取url获取到一个字符串`'?id='1111'` 可以用url，qs，querystring，浏览器提供的api URLSearchParams对象或者自己封装的方法去解析出id的值。
+路由配置还是普通的配置，如：`'admin'`，传参方式如：`'admin?id='1111''`。通过 `this.props.location.search`获取url获取到一个字符串 `'?id='1111'` 可以用url，qs，querystring，浏览器提供的api URLSearchParams对象或者自己封装的方法去解析出id的值。
 
 - **动态路由传值**
 
-路由需要配置成动态路由：如`path='/admin/:id'`，传参方式，如`'admin/111'`。通过`this.props.match.params.id` 取得url中的动态路由id部分的值，除此之外还可以通过`useParams（Hooks）`来获取
+路由需要配置成动态路由：如 `path='/admin/:id'`，传参方式，如 `'admin/111'`。通过 `this.props.match.params.id` 取得url中的动态路由id部分的值，除此之外还可以通过 `useParams（Hooks）`来获取
 
 - **通过query或state传值**
 
-传参方式如：在Link组件的to属性中可以传递对象`{pathname:'/admin',query:'111',state:'111'};`。通过`this.props.location.state`或`this.props.location.query`来获取即可，传递的参数可以是对象、数组等，但是存在缺点就是只要刷新页面，参数就会丢失。
+传参方式如：在Link组件的to属性中可以传递对象 `{pathname:'/admin',query:'111',state:'111'};`。通过 `this.props.location.state`或 `this.props.location.query`来获取即可，传递的参数可以是对象、数组等，但是存在缺点就是只要刷新页面，参数就会丢失。
 
 **（2）获取历史对象**
 
@@ -1971,7 +1962,7 @@ const getConfirmation = (message, callback) => {
 <BrowserRouter getUserConfirmation={getConfirmation} />
 ```
 
-> 需要配合`<Prompt>` 一起使用。
+> 需要配合 `<Prompt>` 一起使用。
 
 - KeyLength 用来设置 Location.Key 的长度。
 
@@ -2008,7 +1999,7 @@ import { Route } from 'react-router-dom'
 <Route path="/login" component={Login}></Route>
 ```
 
-Route 组件的 path 属性用于匹配路径，因为需要匹配 `/` 到 `Home`，匹配 `/login` 到 `Login`，所以需要两个 Route，但是不能这么写。这样写的话，当 URL 的 path 为 “/login” 时，`<Route path="/" />`和`<Route path="/login" />` 都会被匹配，因此页面会展示 Home 和 Login 两个组件。这时就需要借助 `<Switch>` 来做到只显示一个匹配组件：
+Route 组件的 path 属性用于匹配路径，因为需要匹配 `/` 到 `Home`，匹配 `/login` 到 `Login`，所以需要两个 Route，但是不能这么写。这样写的话，当 URL 的 path 为 “/login” 时，`<Route path="/" />`和 `<Route path="/login" />` 都会被匹配，因此页面会展示 Home 和 Login 两个组件。这时就需要借助 `<Switch>` 来做到只显示一个匹配组件：
 
 ```react
 import { Switch, Route} from 'react-router-dom'
@@ -2019,7 +2010,7 @@ import { Switch, Route} from 'react-router-dom'
 </Switch>
 ```
 
-此时，再访问 “/login” 路径时，却只显示了 Home 组件。这是就用到了exact属性，它的作用就是精确匹配路径，经常与`<Switch>` 联合使用。只有当 URL 和该 `<Route>` 的 path 属性完全一致的情况下才能匹配上：
+此时，再访问 “/login” 路径时，却只显示了 Home 组件。这是就用到了exact属性，它的作用就是精确匹配路径，经常与 `<Switch>` 联合使用。只有当 URL 和该 `<Route>` 的 path 属性完全一致的情况下才能匹配上：
 
 ```react
 import { Switch, Route} from 'react-router-dom'
@@ -2454,9 +2445,7 @@ const takeLatest = (pattern, saga, ...args) => fork(function*() {
   ```react
   o type∶ action 类型; o payload∶ 负载数据;
   ```
-
 - Reducer∶ 定义应用状态如何响应不同动作（action），如何更新状态;
-
 - Store∶ 管理action和reducer及其关系的对象，主要提供以下功能∶
 
   ```react
@@ -2464,6 +2453,7 @@ const takeLatest = (pattern, saga, ...args) => fork(function*() {
   o 支持监听action的分发，更新状态(dispatch(action));
   o 支持订阅store的变更(subscribe(listener));
 
+  ```
 - 异步流∶ 由于Redux所有对store状态的变更，都应该通过action触发，异步任务（通常都是业务或获取数据任务）也不例外，而为了不将业务或数据相关的任务混入React组件中，就需要使用其他框架配合管理异步任务流程，如redux-thunk，redux-saga等;
 
 Mobx是一个透明函数响应式编程的状态管理库，它使得状态管理简单可伸缩∶
@@ -2509,7 +2499,7 @@ connect负责连接React和Redux
 
 **（1）获取state**
 
-connect 通过 context获取 Provider 中的 store，通过` store.getState()` 获取整个store tree 上所有state
+connect 通过 context获取 Provider 中的 store，通过 ` store.getState()` 获取整个store tree 上所有state
 
 **（2）包装原组件**
 
@@ -2867,7 +2857,7 @@ useEffect(()=>{
 
 - `componentDidCatch` and `getDerivedStateFromError`：目前**还没有**这些方法的 Hook 等价写法，但很快会加上。
 
-| **class 组件**           | **Hooks 组件**            |
+| **class 组件**     | **Hooks 组件**      |
 | :----------------------- | :------------------------ |
 | constructor              | useState                  |
 | getDerivedStateFromProps | useState 里面 update 函数 |
@@ -3343,7 +3333,7 @@ React 还可以使用 Node 进行服务器渲染，或使用 React Native 开发
 
 #### 8. React中props.children和React.Children的区别
 
-在React中，当涉及组件嵌套，在父组件中使用`props.children`把所有子组件显示出来。如下：
+在React中，当涉及组件嵌套，在父组件中使用 `props.children`把所有子组件显示出来。如下：
 
 ```react
 function ParentComponent(props){
@@ -3355,7 +3345,7 @@ function ParentComponent(props){
 }
 ```
 
-如果想把父组件中的属性传给所有的子组件，需要使用`React.Children`方法。
+如果想把父组件中的属性传给所有的子组件，需要使用 `React.Children`方法。
 
 比如，把几个Radio组合起来，合成一个RadioGroup，这就要求所有的Radio具有同样的name属性值。可以这样：把Radio看做子组件，RadioGroup看做父组件，name的属性值在RadioGroup这个父组件中设置。
 
@@ -3679,7 +3669,7 @@ ReactDOM.render(
 
 #### 16. 为什么使用jsx的组件中没有看到使用react却需要引入react？
 
-本质上来说JSX是`React.createElement(component, props, ...children)`方法的语法糖。在React 17之前，如果使用了JSX，其实就是在使用React， `babel` 会把组件转换为 `CreateElement` 形式。在React 17之后，就不再需要引入，因为 `babel` 已经可以帮我们自动引入react。
+本质上来说JSX是 `React.createElement(component, props, ...children)`方法的语法糖。在React 17之前，如果使用了JSX，其实就是在使用React， `babel` 会把组件转换为 `CreateElement` 形式。在React 17之后，就不再需要引入，因为 `babel` 已经可以帮我们自动引入react。
 
 #### 17. 在React中怎么使用async/await？
 
@@ -3842,10 +3832,6 @@ export default withWindowWidth(MyComponent);
 
 #### 23.react为什么需要合成事件
 
-
-
-
-
 #### 24.react-redux 中 connect 函数的实现原理是什么
 
 react-redux 中的 connect 函数接近观察者模式，它利用 React 的上下文机制，直接订阅了 Redux store 的状态变化来实现组件的状态刚更新。
@@ -3862,26 +3848,12 @@ connect 函数的实现原理可以概括为：
 
 #### 25.useEffect、useLayoutEffect、useInsertionEffect 之间的区别
 
-
-
 #### 26.为什么顺序调用对 React Hooks 很重要？
-
-
-
-
 
 #### 27.React 元素中 $$typeof 的作用
 
-
-
-
-
 #### 28.详细说说 react 生命周期
 
-
-
 #### 29.React如何拆分组件？原则是什么？
-
-
 
 #### 30.在 react 中我们为什么不能直接更新状态

@@ -1,15 +1,10 @@
 ## 1、vue开发中常用的指令有哪些？
 
-- 条件渲染：v-if、  v-else、  v-else-if、  v-show（注意，v-show 不支持 <template> 元素，也不支持 v-else）
-
+- 条件渲染：v-if、  v-else、  v-else-if、  v-show（注意，v-show 不支持 `<template>` 元素，也不支持 v-else）
 - 列表渲染：v-for
-
 - 监听事件：v-on
-
 - 表单输入绑定：v-model
-
 - 其他：v-bind、v-html、v-text
-
 
 ###### **v-if  vs  v-show: 以下是vue官方文档的描述。**[#17](#nofbc)
 
@@ -22,9 +17,9 @@ v-if 也是**惰性的**：如果在初始渲染时条件为假，则什么也�
 - **编译过程：v-if切换有一个局部编译/卸载的过程，切换过程中合适地销毁和重建内部的事件监听和子组件；v-show只是简单的基于css切换；**
 - **编译条件：v-if是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译; v-show是在任何条件下，无论首次条件是否为真，都被编译，然后被缓存，而且DOM元素保留；**
 - **性能消耗：v-if有更高的切换消耗；v-show有更高的初始渲染消耗；**
-- **使用场景：v-if适合运营条件不大可能改变；v-show适合频繁切换。**
+- **使用场景：v-if适合条件不大可能改变；v-show适合频繁切换。**
 
-## 2、vuediff算法的原理
+## 2、vue diff算法的原理
 
 [https://juejin.cn/post/7010594233253888013](https://juejin.cn/post/7010594233253888013)
 [https://juejin.cn/post/7045976871116210213](https://juejin.cn/post/7045976871116210213)
@@ -112,9 +107,9 @@ Vue的diff算法具体实现如下：
 
 Vue 3对静态标记做了重大升级，使用基于ES6 Proxy 的新API来实现静态标记，以提高性能和可维护性。以下是Vue 3和Vue 2静态标记之间的主要区别
 
-1.  新的模板编译器：Vue 3中的模板编译器支持将所有静态节点提取到一个单独的渲染函数中，这样可以避免在每次渲染中重复读取静态节点的开销。 
-2.  静态提升：Vue 3中新的编译器还提供了一种静态提升技术，可以自动将动态节点转换为静态节点。静态提升意味着只要生成渲染函数一次，就可以在整个组件的生命周期内重复使用该渲染函数，从而显著减少渲染时间和内存占用。 
-3.  固化：Vue 3中的静态标记被称为“固化”，因为它使用ES6 Proxy是实现，而不是Vue 2中使用的Object.defineProperty。这种技术可以避免由于属性添加和删除而造成的运行时性能问题，而且因为ES6 Proxy是全新编写的，所以它可以避免一些Vue 2中静态标记的限制。 
+1. 新的模板编译器：Vue 3中的模板编译器支持将所有静态节点提取到一个单独的渲染函数中，这样可以避免在每次渲染中重复读取静态节点的开销。
+2. 静态提升：Vue 3中新的编译器还提供了一种静态提升技术，可以自动将动态节点转换为静态节点。静态提升意味着只要生成渲染函数一次，就可以在整个组件的生命周期内重复使用该渲染函数，从而显著减少渲染时间和内存占用。
+3. 固化：Vue 3中的静态标记被称为“固化”，因为它使用ES6 Proxy是实现，而不是Vue 2中使用的Object.defineProperty。这种技术可以避免由于属性添加和删除而造成的运行时性能问题，而且因为ES6 Proxy是全新编写的，所以它可以避免一些Vue 2中静态标记的限制。
 
 ## 3、vue mixin解决了什么问题，原理以及缺点？
 
@@ -177,13 +172,13 @@ b. extends 类似于mixin,相当于继承,但是只是继承 options Api 中的�
 - 对未合并的选项，进行判断
 
 ```js
-if(!child._base) {    
-   if(child.extends) {        
-      parent = mergeOptions(parent, child.extends, vm)    
-   }    
+if(!child._base) {  
+   if(child.extends) {    
+      parent = mergeOptions(parent, child.extends, vm)  
+   }  
    if(child.mixins) {  
       for(let i = 0, l = child.mixins.length; i < l; i++){  
-        parent = mergeOptions(parent, child.mixins[i], vm)    
+        parent = mergeOptions(parent, child.mixins[i], vm)  
      }   
    }
 }
@@ -204,15 +199,11 @@ if(!child._base) {
 Composition API、 TypeScript 支持、响应式 API、Async 异步组件、Teleport、Proxy-Based Reactivity System
 
 1. 响应式系统改变：Vue2采用Object.defineProperty实现响应式系统，Vue3使用了更高效的Proxy代理对象实现响应式系统，提高了性能和稳定性。
-
 2. 数据改变检测方式改变：Vue2采用递归的方式进行数据改变检测，Vue3使用了基于Proxy的观测机制和内部追踪之间的关系，有效解决了Vue2数据检测的性能瓶颈。
 
    - 检测属性的添加和删除；
-
    - 检测数组索引和长度的变更；
-
    - 支持 Map、Set、WeakMap 和 WeakSet。
-
 3. 生命周期改变：Vue3废除了Vue2中的beforeDestroy和Destroyed钩子函数，并新增了两个钩子函数：beforeUnmount 和unmounted；此外，activated和deactivated这两个钩子在Vue3中被废弃，使用setup()返回的对象的onActivated和onDeactivated属性来替代。。
 4. 异步组件改变：Vue3使用全局函数defineAsyncComponent来定义异步组件，从而方便了异步组件的使用。
 5. Teleport改变：Vue3在Teleport中添加了两个插槽，分别是空插槽和to插槽，用于在传输过程中处理内容的变化。
@@ -226,10 +217,10 @@ Composition API、 TypeScript 支持、响应式 API、Async 异步组件、Tele
 Generator是ES6引入的一种新的函数类型，它可以让函数在执行时暂停，后续又可在需要时恢复执行。Generator是一种特殊的迭代器，用于生成一系列的值。
 Generator的原理可以分为以下几个步骤：
 
-1.  当调用一个Generator函数时，它并不会立即执行，而是返回一个迭代器对象（Iterator）。 
-2.  当不断调用迭代器的next()方法时，Generator函数内部的代码会逐行执行，直到执行到第一个yield关键字时，代码会暂停，并将yield后面的表达式的值作为Generator函数返回对象的value属性值返回，此时yield表达式本身并没有执行。 
-3.  在下一次调用next()方法时，由于上一次暂停时保存的上下文（Context）信息仍然存在，所以Generator函数内部的代码会从上一次暂停的地方继续执行，直到再次执行到yield关键字，代码会再次暂停，并将最新的yield后面的表达式的值作为Generator函数返回对象的value属性值返回。 
-4.  通过对迭代器的不断调用next()方法，可以一步步地取出所有Generator函数中yield关键字后的表达式的值，直到函数执行结束，Generator函数返回的迭代器的done属性值变为true。 
+1. 当调用一个Generator函数时，它并不会立即执行，而是返回一个迭代器对象（Iterator）。
+2. 当不断调用迭代器的next()方法时，Generator函数内部的代码会逐行执行，直到执行到第一个yield关键字时，代码会暂停，并将yield后面的表达式的值作为Generator函数返回对象的value属性值返回，此时yield表达式本身并没有执行。
+3. 在下一次调用next()方法时，由于上一次暂停时保存的上下文（Context）信息仍然存在，所以Generator函数内部的代码会从上一次暂停的地方继续执行，直到再次执行到yield关键字，代码会再次暂停，并将最新的yield后面的表达式的值作为Generator函数返回对象的value属性值返回。
+4. 通过对迭代器的不断调用next()方法，可以一步步地取出所有Generator函数中yield关键字后的表达式的值，直到函数执行结束，Generator函数返回的迭代器的done属性值变为true。
 
 需要注意的是，Generator函数可以通过yield关键字返回任意次数的值，此外，Generator函数内部任意一处抛出异常都会导致迭代器的done属性变为true，并且抛出的异常会在外部代码中被捕获。除此之外，Generator函数还可以通过yield*关键字委托给其他Generator函数，从而实现协程的功能
 
@@ -293,8 +284,6 @@ Vue的**响应式数据绑定机制**是Vue最核心的特性之一。通过对�
 
 总之，我认为Vue是一个优秀的JavaScript框架，它简单易用、功能强大、扩展性好，并且有着极佳的性能表现。对于前端开发人员来说，Vue是一个值得深入学习和使用的框架。
 
-
-
 **Vue.js 是一款渐进式、轻量级的前端框架，它的核心思想是【数据驱动视图】。它通过数据劫持的方式实现了响应式编程，具有高度灵活性和可组合性。它采用了虚拟DOM和异步渲染等技术，使得应用程序在性能、可维护性和开发效率方面都得到了很大的实际提升**。
 
 **Vue.js 最大的特点是简洁易学、易于上手。其组件化的设计使得页面整体的结构更加清晰明了，配合指令和事件可以大大简化前端开发的复杂性。在模板语法、组件化、数据双向绑定、计算属性、虚拟DOM、自定义指令、过滤器等方面，Vue.js都提供了方便的API支持，并且与其他主流前端库和框架兼容性良好**。
@@ -330,11 +319,9 @@ Vue.js 是采用数据劫持结合发布者-订阅者模式的方式，通过Obj
 
 ![img](https://gitee.com/nest-of-old-time/picture/raw/master/typora/202402011705583.png)
 
-
-
 ## 8. 使用 Object.defineProperty() 跟Proxy进行数据劫持分别有什么缺点？
 
-1.  **Object.defineProperty()在对一些属性进行操作时，使用这种方法无法拦截**
+1. **Object.defineProperty()在对一些属性进行操作时，使用这种方法无法拦截**
 
 比如通过下标方式修改数组数据或者给对象新增属性，这都不能触发组件的重新渲染，因为 Object.defineProperty 不能拦截到这些操作。更精确的来说，对于数组而言，大部分操作都是拦截不到的，只是 Vue 内部通过重写函数的方式解决了这个问题。
 
@@ -377,10 +364,10 @@ watch属性用于监听数据的变化，并在数据变化时执行一些逻辑
 
 - 它支持缓存，只有依赖的数据发生了变化，才会重新计算
 - 不支持异步，当Computed中有异步操作时，无法监听数据的变化
-
 - computed的值会默认走缓存，计算属性是基于它们的响应式依赖进行缓存的，也就是基于data声明过，或者父组件传递过来的props中的数据进行计算的。
 - 如果一个属性是由其他属性计算而来的，这个属性依赖其他的属性，一般会使用computed
-- 如果computed属性的属性值是函数，那么默认使用get方法，函数的返回值就是属性的属性值；在computed中，属性有一个get方法和一个set方法，当数据发生变化时，会调用set方法。
+- 如果computed属性的属性值是函数，那么默认使用get方法，函数的返回值就是属性的属性值；在computed中，属性有一个get方法和一个set方法，当
+- 。
 
 对于Watch：
 
@@ -389,8 +376,8 @@ watch属性用于监听数据的变化，并在数据变化时执行一些逻辑
 - 监听的函数接收两个参数，第一个参数是最新的值，第二个是变化之前的值
 - 当一个属性发生变化时，就需要执行相应的操作
   - 监听数据必须是data中声明的或者父组件传递过来的props中的数据，当发生变化时，会触发其他操作，函数有两个的参数：
-  - immediate：组件加载立即触发回调函数deep：深度监听，发现数据内部的变化，在复杂数据类型中使用，例如数组中的对象发生变化。需要注意的是，deep无法监听到数组和对象内部的变化。
-
+  - immediate：组件加载立即触发回调函数
+  - deep：深度监听，发现数据内部的变化，在复杂数据类型中使用，例如数组中的对象发生变化。需要注意的是，deep无法监听到数组和对象内部的变化。
 
 当想要执行异步或者昂贵的操作以响应不断的变化时，就需要使用watch。
 
@@ -565,9 +552,9 @@ MVVM模式是一种由Microsoft提出的模式，它将视图层和模型层分�
 
 `v-model` 对于不同的表单元素，其实现方式略有不同，但是基本思路都是将表单元素的值与数据对象的属性进行数据绑定。
 
--  对于 `input` 和 `textarea` 元素，`v-model` 通过监听 `input` 事件实现数据绑定。 
--  对于 `checkbox` 和 `radio` 元素，`v-model` 通过监听 `change` 事件实现数据绑定。 
--  对于 `select` 元素，`v-model` 通过监听 `change` 事件实现数据绑定，同时可以通过 `multiple` 属性实现多选数据绑定。 
+- 对于 `input` 和 `textarea` 元素，`v-model` 通过监听 `input` 事件实现数据绑定。
+- 对于 `checkbox` 和 `radio` 元素，`v-model` 通过监听 `change` 事件实现数据绑定。
+- 对于 `select` 元素，`v-model` 通过监听 `change` 事件实现数据绑定，同时可以通过 `multiple` 属性实现多选数据绑定。
 
 2. 监听输入框的值变化
 
@@ -747,32 +734,24 @@ Vue.nextTick(0方法可以将回调函数推入到异步队列中，在DOM更新
 
 因此，Vue.nextTick()是一个非常实用的方法，能够确保我们在操作DOM时获取到更新后的结果，提高代码的可靠性。
 
-
-
 **智能AI**
 
 在 Vue.js 中，$nextTick 是一个非常重要的方法，可以帮助我们在 DOM 更新后执行某些操作，以实现对页面的操作更加精确和准确。
 
-
-
 $nextTick 的原理是，通过将回调函数放入一个异步队列中，等到 DOM 更新完成后执行该回调函数。具体来说，当 Vue 更新数据时，实际上不会立刻更新 DOM，而是将数据变化推入一个队列中，并清空队列。而 $nextTick 就是在该队列清空时执行相应的回调函数。
-
-
 
 $nextTick 的作用主要有两个：
 
-1.  保证在 DOM 更新后立刻获取正确的 DOM 信息。因为在修改数据后，Vue 可能需要一些时间才能更新 DOM。此时，如果我们需要获取 DOM 元素的信息，就需要等待 DOM 更新完成后再获取，否则可能会得到错误的信息。而 $nextTick 可以帮助我们在 DOM 更新后立刻获取正确的 DOM 信息。 
-2.  保证在 DOM 更新后立即执行某些操作。有时候，我们需要在操作 DOM 后执行一些相关的操作，如计算 DOM 元素的尺寸或位置。如果在 DOM 更新之前就执行这些操作，会得到错误的结果。而 $nextTick 可以帮助我们在 DOM 更新后立即执行这些操作，从而避免错误或不准确的结果。 
+1. 保证在 DOM 更新后立刻获取正确的 DOM 信息。因为在修改数据后，Vue 可能需要一些时间才能更新 DOM。此时，如果我们需要获取 DOM 元素的信息，就需要等待 DOM 更新完成后再获取，否则可能会得到错误的信息。而 $nextTick 可以帮助我们在 DOM 更新后立刻获取正确的 DOM 信息。
+2. 保证在 DOM 更新后立即执行某些操作。有时候，我们需要在操作 DOM 后执行一些相关的操作，如计算 DOM 元素的尺寸或位置。如果在 DOM 更新之前就执行这些操作，会得到错误的结果。而 $nextTick 可以帮助我们在 DOM 更新后立即执行这些操作，从而避免错误或不准确的结果。
 
 举例来说，在以下情况下，我们需要使用 $nextTick：
 
-1.  在修改数据后立即操作 DOM。 
-2.  在修改数据后需要使用 computed 或 watch 观察者获取更新后的数据。 
-3.  在修改数据后需要等待一些异步操作，如 API 请求或图片加载。这时我们需要等待异步操作完成，再更新 DOM。 
+1. 在修改数据后立即操作 DOM。
+2. 在修改数据后需要使用 computed 或 watch 观察者获取更新后的数据。
+3. 在修改数据后需要等待一些异步操作，如 API 请求或图片加载。这时我们需要等待异步操作完成，再更新 DOM。
 
 综上所述，$nextTick 的作用很重要，可以保证我们在操作 DOM 时获取或使用正确的数据信息，也可以方便地执行一些异步操作，从而提高应用程序的性能和稳定性。
-
-
 
 $nextTick 方法的实现过程是比较简单的。
 
@@ -1214,13 +1193,13 @@ render () {
   //
   function getFirstComponentChild (children: ?Array<VNode>): ?VNode {
     if (Array.isArray(children)) {
-  for (let i = 0; i < children.length; i++) {
-    const c = children[i]
-    if (isDef(c) && (isDef(c.componentOptions) || isAsyncPlaceholder(c))) {
-      return c
+      for (let i = 0; i < children.length; i++) {
+        const c = children[i]
+        if (isDef(c) && (isDef(c.componentOptions) || isAsyncPlaceholder(c))) {
+          return c
+        }
+      }
     }
-  }
-  }
   }
   const slot = this.$slots.default // 获取默认插槽
   const vnode: VNode = getFirstComponentChild(slot)// 获取第一个子组件
@@ -1488,12 +1467,6 @@ vue的组件加载和渲染顺序
 - **能更快获取到服务端数据，减少页面加载时间，用户体验更好；**
 - **SSR不支持 beforeMount 、mounted 钩子函数，放在 created 中有助于一致性。**
 
-**keep-alive是 Vue 提供的一个内置组件，用来对组件进行缓存——在组件切换过程中将状态保留在内存中，防止重复渲染DOM。**
-
-**如果为一个组件包裹了 keep-alive，那么它会多出两个生命周期：deactivated、activated。同时，beforeDestroy 和 destroyed 就不会再被触发了，因为组件不会被真正销毁。**
-
-**当组件被换掉时，会被缓存到内存中、触发 deactivated 生命周期；当组件被切回来时，再去缓存里找这个组件、触发 activated钩子函数。**
-
 ## 38.keep-alive 中的生命周期哪些
 
 说下vue的keep alive
@@ -1522,7 +1495,7 @@ keep-alive提供了一些配置属性，包括include、exclude、max和min等�
 
 ## 39.讲一下v-if和v-for的优先级
 
-https://juejin.cn/post/7217810344696594488
+[v-for比v-if优先级更高？面试官:回去等通知吧](https://juejin.cn/post/7217810344696594488 "掘金")
 
 ## 40.Vue-Router 的懒加载如何实现
 
@@ -1580,7 +1553,7 @@ const router = new Router({
 
 ## 41.路由的hash和history模式的区别
 
-https://juejin.cn/post/7116336664540086286
+[hash和history路由的区别](https://juejin.cn/post/7116336664540086286 "掘金")
 
 **Vue-Router有两种模式：hash模式和history模式。默认的路由模式是hash模式。**
 
@@ -1640,9 +1613,9 @@ Vue Router的History模式相比于默认的Hash模式来说，能够更好地�
 
 安全性：使用History模式会暴露出服务器上的文件路径，因此需要特别注意安全性。在部署时需要仔细检查服务器配置，确保不会因为恶意请求而导致安全问题。
 
-兼容性：History模式需要支持HTML5的history..oushState API,因此在一些较老的浏览器上可能会存在兼容性问题。需要在开发时做好相关的测试和兼容性处理。
+兼容性：History模式需要支持HTML5的history.pushState API,因此在一些较老的浏览器上可能会存在兼容性问题。需要在开发时做好相关的测试和兼容性处理。
 
-打包发布：在使用ebpack等工具打包发布时，需要配置正确的publicPath,保证HTML中引用的资源路径正确。同时需要注意，如果项目使用了多个子路由，需要在打包时将所有的子路由都配置到publicPath中。
+打包发布：在使用webpack等工具打包发布时，需要配置正确的publicPath,保证HTML中引用的资源路径正确。同时需要注意，如果项目使用了多个子路由，需要在打包时将所有的子路由都配置到publicPath中。
 
 总之，使用History模式需要对后端进行相关配置，并且需要特别注意安全性和兼容性问题，同时在打包发布时需要正确配置publicPath,确保页面资源路径正确。
 
@@ -1792,10 +1765,10 @@ router.beforeEach((to, from, next) => {
     if (!ifInfo) { 
         // sessionStorage里没有储存user信息  
         if (to.path == '/') { 
-            //如果是登录页面路径，就直接next()    
+            //如果是登录页面路径，就直接next()  
             next();  
         } else { 
-            //不然就跳转到登录    
+            //不然就跳转到登录  
             Message.warning("请重新登录！");   
             window.location.href = Vue.prototype.$loginUrl;  
         }  
@@ -1822,13 +1795,13 @@ router.afterEach((to, from) => {
 
 ```js
 export default [  
-    {      
-        path: '/',      
-        name: 'login',      
-        component: login,      
-        beforeEnter: (to, from, next) => {        
-            console.log('即将进入登录页面')        
-            next()      
+    {  
+        path: '/',  
+        name: 'login',  
+        component: login,  
+        beforeEnter: (to, from, next) => {    
+            console.log('即将进入登录页面')    
+            next()  
         }  
     }
 ]
@@ -1847,11 +1820,11 @@ export default [
 **注意点，beforeRouteEnter组件内还访问不到this，因为该守卫执行前组件实例还没有被创建，需要传一个回调给 next来访问，例如：**
 
 ```js
-beforeRouteEnter(to, from, next) {    
-    next(target => {      
-        if (from.path == '/classProcess') {        
-            target.isFromProcess = true      
-        }    
+beforeRouteEnter(to, from, next) {  
+    next(target => {  
+        if (from.path == '/classProcess') {    
+            target.isFromProcess = true  
+        }  
     })  
 }
 ```
@@ -1886,7 +1859,6 @@ beforeRouteEnter(to, from, next) {
 - **beforeCreate：组件生命周期，不能访问tAis。**
 - **created;组件生命周期，可以访问tAis，不能访问dom。**
 - **beforeMount：组件生命周期**
-
 - **deactivated：离开缓存组件a，或者触发a的beforeDestroy和destroyed组件销毁钩子。**
 - **mounted：访问/操作dom。**
 - **activated：进入缓存组件，进入a的嵌套子组件（如果有的话）。**
@@ -2152,8 +2124,6 @@ export default{
 }
 ```
 
-
-
 ## 59.如何在组件中重复使用Vuex的mutation
 
 **使用mapMutations辅助函数,在组件中这么使用**
@@ -2169,8 +2139,6 @@ methods:{
 
 **然后调用 this.setNumber(10)相当调用 this.$store.commit('SET_NUMBER',10)**
 
-
-
 ## 60.defineProperty和proxy的区别
 
 **Vue 在实例初始化时遍历 data 中的所有属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。这样当追踪数据发生变化时，setter 会被自动调用。**
@@ -2178,12 +2146,12 @@ methods:{
 **但是这样做有以下问题：**
 
 1. **添加或删除对象的属性时，Vue 检测不到。因为添加或删除的对象没有在初始化进行响应式处理，只能通过 $set 来调用 Object.defineProperty()处理。**
-   1. 属性的新增和删除
 
-2. **无法监控到数组下标和长度的变化。** 
+   1. 属性的新增和删除
+2. **无法监控到数组下标和长度的变化。**
+
    1. 直接通过下标赋值 arr[i] = value
    2. 直接修改数组长度 arr.length = newLen
-
 
 **Vue3 使用 Proxy 来监控数据的变化。Proxy 是 ES6 中提供的功能，其作用为：用于定义基本操作的自定义行为（如属性查找，赋值，枚举，函数调用等）。相对于 Object.defineProperty()，其有以下特点：**
 
@@ -2206,9 +2174,7 @@ Object.defineProperty 对于数组只能在特定情况下监听，例如 push�
 
 4. Proxy 可以减少对于嵌套对象的递归监听
 
-对于嵌套对象，如果使用 Object.defineProperty 进行监听，则需要递归遍历每个对象属性进行监听，这样的性能开销较大。而 Proxy 可以通过递归监听整个对象，从而减少了对于嵌套对象的递归监听，提高了效率。<br />综上所述，Vue3.0 选择使用 Proxy 作为其响应式系统的实现，可以充分发挥 Proxy 的优势，在性能、规范性、灵活性等方面进行提升，使得 Vue3.0 的响应式系统更加强大、高效。
-
-
+对于嵌套对象，如果使用 Object.defineProperty 进行监听，则需要递归遍历每个对象属性进行监听，这样的性能开销较大。而 Proxy 可以通过递归监听整个对象，从而减少了对于嵌套对象的递归监听，提高了效率。`<br />`综上所述，Vue3.0 选择使用 Proxy 作为其响应式系统的实现，可以充分发挥 Proxy 的优势，在性能、规范性、灵活性等方面进行提升，使得 Vue3.0 的响应式系统更加强大、高效。
 
 **在 Vue2 中， 0bject.defineProperty 会改变原始数据，而 Proxy 是创建对象的虚拟表示，并提供 set 、get 和 deleteProperty 等处理器，这些处理器可在访问或修改原始对象上的属性时进行拦截，有以下特点∶**
 
@@ -2221,8 +2187,6 @@ Object.defineProperty 对于数组只能在特定情况下监听，例如 push�
 - **get 收集依赖**
 - **Set、delete 等触发依赖**
 - **对于集合类型，就是对集合对象的方法做一层包装：原方法执行后执行依赖相关的收集或触发逻辑。**
-
-
 
 ## 62.Vue 3.0 中的 Vue Composition API
 
@@ -2285,15 +2249,13 @@ export default {
 
 **虽然Compositon API看起来比React Hook好用，但是其设计思想也是借鉴React Hook的。**
 
-
-
 ## 64.vue和react的区别
 
-1.  响应式原理不同：Vue 的响应式原理是基于 Object.defineProperty 实现的数据双向绑定，而 React 则是使用单向数据流，通过 JSX 实现 UI 的渲染。 
-2.  组件之间通讯方式有所不同：Vue 使用 props 和 $emit 实现子组件向祖先组件传递数据，而 React 则是通过 props 和回调函数实现传递数据。 
-3.  所需的学习曲线不同：Vue 比 React 更容易学习和使用，因为 Vue 拥有更简单的模板语法和 Options API。而 React 则需要掌握 JSX、Hooks 等较新的概念。 
-4.  后续维护成本不同：Vue 的模板语法和 Options API 技巧稍多，但模板语法存在较强的限制，比如无法使用大多数 JavaScript 特性和方法和 JSX。而 React 是使用 JavaScript 编写，灵活性高，但它需要更深的理解和掌握。 
-5.  工具链不同：Vue 比 React 更注重完整的工具链。Vue 拥有 CLI 和官方的 Vuex、Vue Router 等库，它们可以方便地完成各项任务，而 React 则需要通过第三方工具或库来完成。 
+1. 响应式原理不同：Vue 的响应式原理是基于 Object.defineProperty 实现的数据双向绑定，而 React 则是使用单向数据流，通过 JSX 实现 UI 的渲染。
+2. 组件之间通讯方式有所不同：Vue 使用 props 和 $emit 实现子组件向祖先组件传递数据，而 React 则是通过 props 和回调函数实现传递数据。
+3. 所需的学习曲线不同：Vue 比 React 更容易学习和使用，因为 Vue 拥有更简单的模板语法和 Options API。而 React 则需要掌握 JSX、Hooks 等较新的概念。
+4. 后续维护成本不同：Vue 的模板语法和 Options API 技巧稍多，但模板语法存在较强的限制，比如无法使用大多数 JavaScript 特性和方法和 JSX。而 React 是使用 JavaScript 编写，灵活性高，但它需要更深的理解和掌握。
+5. 工具链不同：Vue 比 React 更注重完整的工具链。Vue 拥有 CLI 和官方的 Vuex、Vue Router 等库，它们可以方便地完成各项任务，而 React 则需要通过第三方工具或库来完成。
 
 总的来说，Vue 和 React 的区别是基于响应式原理不同，组件通讯不同，学习曲线不同，后续维护成本不同，工具链不同等方面。选择 Vue 还是 React，取决于项目的需求和开发团队的技能水平。
 
@@ -2482,7 +2444,7 @@ $refs：通过在父组件中使用ref属性来获取子组件的实例，从而
 
 ## 78.Vue2.x 和 Vue3 响应式上的区别？Vue 数据绑定是怎么实现的
 
- 总体回答 
+ 总体回答
 
 Vue 2.x 版本使用的是基于 Object.defineProperty 实现的响应式系统，而 Vue 3.x 版本使用的是基于 ES6 Proxy 实现的响应式系统，两者在实现上有很大的区别。
 
@@ -2498,9 +2460,9 @@ Vue 2.x 版本使用的是基于 Object.defineProperty 实现的响应式系统�
 
 总的来说，Vue 3.x 中的响应式系统在使用上更加方便、高效和完善。
 
- Object.defineProperty 实现数据响应式的一些问题 
+ Object.defineProperty 实现数据响应式的一些问题
 
- 只能劫持对象属性 
+ 只能劫持对象属性
 
 Object.defineProperty 只能劫持对象属性的 getter 和 setter 方法，无法对对象本身进行劫持，且需要对每个属性单独设置，导致代码冗余和效率低下。
 
@@ -2643,7 +2605,7 @@ Vue.delete(this.arr, 0);
 
 总之，使用 $set、$delete 或 Vue.set、Vue.delete 方法能够确保对已有对象和数组以及新增的属性或元素进行响应式的操作，从而实现数据的动态变化和视图的更新。
 
- **初始化性能开销大** 
+ **初始化性能开销大**
 
 基于上述的两个特点的描述，不难看出，使用 Object.defineProperty  的方式由于需要对每个属性都进行 setter 和 getter 的定义，因此在对象较大时，初始化的性能开销较大，影响用户体验。
 
@@ -2755,7 +2717,7 @@ Vue.component('my-functional-component', {
 });
 ```
 
-上面的代码创建了一个名为 my-functional-component 的函数式组件，它接收一个 message 属性，并将其显示在一个 <div> 元素中。
+上面的代码创建了一个名为 my-functional-component 的函数式组件，它接收一个 message 属性，并将其显示在一个 `<div>` 元素中。
 render 函数接收两个参数：第一个参数是 createElement 函数，用来创建 VNode；第二个参数是上下文对象，其中包含了组件的一些属性，比如 props，listeners 等等。
 最后，要注意在函数式组件中，由于没有实例，所以不能使用 this 关键字访问组件的属性或方法，而是需要从上下文对象中获取相应的属性和方法。
 
@@ -2868,7 +2830,7 @@ export default DynamicHeading;
 
 - 在 3.x 中，函数式组件的性能提升可以忽略不计，因此我们建议只使用有状态的组件
 - 函数式组件只能使用接收 props 和 context 的普通函数创建 (即：slots，attrs，emit)。
-- 非兼容变更：functional attribute 在单文件组件 (SFC) <template> 已被移除
+- 非兼容变更：functional attribute 在单文件组件 (SFC) `<template>` 已被移除
 - 非兼容变更：{ functional: true } 选项在通过函数创建组件已被移除
 
 在 Vue 2 中，函数式组件有两个主要用例：
@@ -2881,15 +2843,15 @@ export default DynamicHeading;
 
 ## 80.详解 Vue 单向数据流
 
-是什么：在 Vue 中，单向数据流是指数据在组件之间的传递是单向的，即从父组件传递给子组件。
-解决了什么问题：这种单向数据流的模式有助于提高代码的可维护性和可预测性。
+**是什么**：在 Vue 中，单向数据流是指数据在组件之间的传递是单向的，即从父组件传递给子组件。
+**解决了什么问题**：这种单向数据流的模式有助于提高代码的可维护性和可预测性。
 在 Vue 中，父组件可以通过 props 将数据传递给子组件。子组件接收到父组件传递的数据后，可以在自己的作用域内使用这些数据。子组件不能直接修改父组件传递的数据，只能通过触发事件（event）的方式通知父组件进行修改。
 这种单向数据流的设计思想有以下优点：
 
-1. 数据流清晰：单向数据流让数据的流向变得明确，可以清楚地追踪数据的来源和变化。只要关注父组件传递的数据和子组件发出的事件，就能了解数据的整个流动过程，方便排查问题和调试。
-2. 数据可维护性：数据的单向流动使得组件的状态更易于理解和维护。组件的状态只受到父组件传递的 props 影响，不会受到其他组件的直接修改。这样可以更好地控制和管理状态的变化，减少意外错误和副作用。
-3. 可重用性和解耦：通过单向数据流，可以将组件解耦，使得组件更加独立和可重用。父组件通过 props 传递数据给子组件时，并不需要关心子组件内部是如何处理这些数据的，只需要关注数据的传递即可。这样可以提高组件的复用性和可拓展性。
-4. 可预测性：由于数据的流动是单向的，组件的状态变化是可预测的。只要了解了数据的来源和影响，就可以精确预测组件的行为和渲染结果。这对于调试和维护非常重要，可以快速定位问题和优化代码。
+1. **数据流清晰**：单向数据流让数据的流向变得明确，可以清楚地追踪数据的来源和变化。只要关注父组件传递的数据和子组件发出的事件，就能了解数据的整个流动过程，方便排查问题和调试。
+2. **数据可维护性**：数据的单向流动使得组件的状态更易于理解和维护。组件的状态只受到父组件传递的 props 影响，不会受到其他组件的直接修改。这样可以更好地控制和管理状态的变化，减少意外错误和副作用。
+3. **可重用性和解耦**：通过单向数据流，可以将组件解耦，使得组件更加独立和可重用。父组件通过 props 传递数据给子组件时，并不需要关心子组件内部是如何处理这些数据的，只需要关注数据的传递即可。这样可以提高组件的复用性和可拓展性。
+4. **可预测性**：由于数据的流动是单向的，组件的状态变化是可预测的。只要了解了数据的来源和影响，就可以精确预测组件的行为和渲染结果。这对于调试和维护非常重要，可以快速定位问题和优化代码。
 
 需要注意的是，虽然 Vue 的单向数据流模式是默认规则，但在开发中也可以通过特定的方式实现双向绑定，例如使用 v-model 指令。
 但在大多数情况下，遵循单向数据流的原则能够使代码更易于理解、调试和维护。
@@ -2931,30 +2893,21 @@ Vue 模板（template）在运行前会被编译成渲染函数，避免了每�
 它的优点如下：
 
 - 提高性能：模板编译将模板转换成更高效的代码，避免了运行时解析模板的开销，提升了应用的性能。
-
 - 简化开发：通过模板编译，开发者可以使用类似 HTML 的标记语法编写组件模板，而无需直接操作 JavaScript 对象和函数，降低了开发的难度。
-
 - 实现响应式更新：模板编译会将模板中的指令和数据转化成一组渲染函数，这些渲染函数可以与 Vue 的响应式系统协同工作，实现数据的自动更新和视图的重渲染。
-
 - 基于模板的性能优化
 
-  - 静态节点提升：Vue 在模板编译阶段会检测出那些静态节点（不依赖响应式数据的节点），并将其优化为常量，避免了在每次重新渲染时对这些节点进行重复的创建和比对操作。
-
+  - **静态节点提升**：Vue 在模板编译阶段会检测出那些静态节点（不依赖响应式数据的节点），并将其优化为常量，避免了在每次重新渲染时对这些节点进行重复的创建和比对操作。
   - 列表渲染优化：Vue 提供了 v-for 指令用于列表渲染，而且在编译时会自动为每个列表项生成唯一的 key 值。这样在更新列表时，Vue 可以精确地检测到每个列表项的变化，减少了不必要的 DOM 操作，提高了性能。
-
   - 条件渲染优化：Vue 的模板支持使用 v-if 和 v-show 指令进行条件渲染。在编译时，Vue 会根据指令的条件进行静态分析，如果条件是确定的（即不依赖响应式数据），则会进行静态提升，优化渲染性能。
-
   - 缓存事件处理函数：Vue 的模板编译会自动为事件处理函数生成缓存版本，在渲染过程中复用同一个处理函数，避免了重复创建匿名函数的开销。
-
   - 内置指令：Vue 内置了一些常用的指令，如 v-model、v-bind、v-on 等。这些指令在模板编译时会被转换为相应的渲染函数，能够更高效地更新视图，并且可以方便地处理用户输入、属性绑定和事件监听等操作。
-
 
 **Runtime + Compiler 版本以及 Runtime only 版本**
 
 Vue.js 提供了 2 个版本，一个是 Runtime + Compiler 版本，一个是 Runtime only 版本。
 
-- 
-  Runtime + Compiler 版本：包含完整的 Vue 运行时（runtime）和模板编译器（compiler）。在浏览器中运行时，会在运行前将模板编译成渲染函数并执行。这个版本的 Vue 可以直接接收模板字符串作为组件的 template，并在浏览器中编译执行。这个版本的 Vue 体积较大，但可以在开发过程中实时编译模板，通常用于在浏览器环境中开发单文件组件。
+- Runtime + Compiler 版本：包含完整的 Vue 运行时（runtime）和模板编译器（compiler）。在浏览器中运行时，会在运行前将模板编译成渲染函数并执行。这个版本的 Vue 可以直接接收模板字符串作为组件的 template，并在浏览器中编译执行。这个版本的 Vue 体积较大，但可以在开发过程中实时编译模板，通常用于在浏览器环境中开发单文件组件。
 - Runtime only 版本：只包含了 Vue 的运行时（runtime），没有模板编译器。这个版本的 Vue 不能接收模板字符串作为组件的 template，需要使用预编译的渲染函数或者通过单文件组件配合构建工具来使用。这个版本的 Vue 体积较小，适用于生产环境，因为模板的编译和优化一般在构建过程中完成。
 
 当需要在客户端编译模板 (比如传入一个字符串给 template 选项，或挂载到一个元素上并以其 DOM 内部的 HTML 作为模板)，就将需要加上编译器，即完整版：
@@ -3041,20 +2994,20 @@ function render(_ctx, _cache) {
 - Vue Template 的优势：
 
   - 语法友好：Vue 的模板采用类似 HTML 的标记语言，容易理解和上手。
-
   - 可视化编辑工具支持：由于模板具有标记语言的特点，可以在一些编辑器中获得较好的支持。
-
   - 兼容性强：Vue 的模板相对容易迁移，可适应旧项目，且模板和逻辑分离，避免了代码混杂问题。
-
 - Vue Template 的劣势：
+
   - 扩展性差：Vue 的模板只能使用内置的 JavaScript 功能，扩展性相对较差，无法灵活地处理复杂逻辑。
   - 难以调试：模板语法虽然类似 HTML，但实际上是 JavaScript 表达式，需要特定工具来进行调试。
   - 可能产生重复代码：模板中相似的操作可能需要在多个组件中重复编写，导致代码冗余和维护困难。
 - React JSX 的优势：
+
   - 强大的扩展性：JSX 可以使用 JavaScript 的完整功能，允许在模板中编写复杂逻辑和自定义组件。
   - 更好的一致性：JSX 与 JavaScript 具有更高的语法一致性，对于熟悉 JavaScript 开发者来说更加自然。
   - 更灵活的调试：由于 JSX 是 JavaScript 代码，可以直接在浏览器中进行调试。
 - React JSX 的劣势：
+
   - 上手难度较高：相较于 Vue 的模板，JSX 的语法相对复杂，对于新手来说上手难度较大。
   - 学习成本高：需要了解和熟悉 JSX 语法和 React 的生命周期等概念。
   - 编辑器支持较差：JSX 的语法对于一些编辑器可能支持不够好，可能需要额外的插件或配置。
@@ -3139,8 +3092,6 @@ Vue 3 采用了基于观察者的 Diff 算法，也称为静态分析算法。�
 
 ![image.png](https://gitee.com/nest-of-old-time/picture/raw/master/images/202402012112639.png)
 
-
-
 如图所示，只按层比较，就可以将时间复杂度降低为 O(n)。按层比较也不是广度遍历，其实就是判断某个节点的子元素间 diff，跨父节点的兄弟节点也不必比较。
 
 这样做确实非常高效，但代价就是，判断的有点傻，比如 ac 明明是一个移动操作，却被误识别为删除 + 新增。
@@ -3169,8 +3120,6 @@ Vue 的 Dom diff 一共 5 步，我们结合下图先看前三步：
 
 ![img](https://cdn.nlark.com/yuque/0/2023/webp/311219/1697167735096-7cec0918-b3d6-4f97-9cdb-e35ca5792eb6.webp?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_43%2Ctext_5pyI5ZOl55qE6Z2i6K-V6K6t57uD6JCl%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10%2Fresize%2Cw_1125%2Climit_0)
 
-
-
 如图所示，1、2、3、4 步走完后，Old 和 New 都有剩余，因此走到第五步，第五步分为三小步：
 
 1、遍历 Old 创建一个 Map，这个就是那个换时间的空间消耗，它记录了每个旧节点的 index 下标，一会好在 New 里查出来。
@@ -3183,13 +3132,9 @@ Vue 的 Dom diff 一共 5 步，我们结合下图先看前三步：
 
 ![img](https://cdn.nlark.com/yuque/0/2023/webp/311219/1697167734946-1d6bf8af-107b-4f62-b3e0-dd033d2d21a8.webp?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_26%2Ctext_5pyI5ZOl55qE6Z2i6K-V6K6t57uD6JCl%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10%2Fresize%2Cw_906%2Climit_0)
 
-
-
 但其实最优的移动方式是下面这样：
 
 ![img](https://cdn.nlark.com/yuque/0/2023/webp/311219/1697167735040-f56f1c36-55ea-4f69-a75f-47cc471fae6d.webp?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_25%2Ctext_5pyI5ZOl55qE6Z2i6K-V6K6t57uD6JCl%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10%2Fresize%2Cw_892%2Climit_0)
-
-
 
 为什么呢？因为移动的时候，其他元素的位置也在相对变化，可能做了 A 效果同时，也把 B 效果给满足了，也就是说，找到那些相对位置有序的元素保持不变，让那些位置明显错误的元素挪动即是最优的。
 
